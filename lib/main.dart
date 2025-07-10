@@ -1,8 +1,6 @@
-// main.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:nearby_merchants/merchants/merchants_finder_page.dart';
+import 'package:nearby_merchants/views/home_view.dart';
 
 void main() => runApp(const MerchantFinderApp());
 
@@ -23,15 +21,6 @@ class MerchantFinderApp extends StatelessWidget {
     colorScheme: ColorScheme.fromSeed(
       seedColor: BrandColors.yellow,
       brightness: Brightness.dark,
-    ),
-    inputDecorationTheme: const InputDecorationTheme(
-      filled: true,
-      fillColor: BrandColors.card,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(32)),
-        borderSide: BorderSide.none,
-      ),
-      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
     ),
   );
 

@@ -1,35 +1,50 @@
 import 'package:flutter_overpass/flutter_overpass.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:nearby_merchants/user_location/get_current_location.dart';
 
 class Merchants {
   final String name;
   final String shopType;
+  final double lat;
+  final double long;
 
-  Merchants({required this.name, required this.shopType});
+  Merchants({
+    required this.lat,
+    required this.long,
+    required this.name,
+    required this.shopType,
+  });
 }
 
-Future<List<Merchants>> getAllMerchants() async {
+/// Fetches nearby merchants using an efficient, server-side filtered query.
+Future<List<Merchants>> getAllMerchants({required Position atLocation}) async {
   final overpass = FlutterOverpass();
-  Position currentPos = await getCurrentLocation();
-  final currentLatitude = 30.761631;
-  final currentLongitude = 76.610118;
 
-  final shops = await overpass.getNearbyNodes(
-    latitude: currentLatitude,
-    longitude: currentLongitude,
+  final result = await overpass.getNearbyNodes(
+    latitude: atLocation.latitude,
+    longitude: atLocation.longitude,
     radius: 10000,
   );
 
-  final List<Merchants> allMerchants = <Merchants>[];
-  for (final node in shops.elements ?? <Element>[]) {
-    final name = node.tags?.name ?? 'No name';
-    final shopType = node.tags?.amenity ?? '(Unknown)';
-    if (shopType != '(Unknown)' &&
-        shopType != 'hospital' &&
-        shopType != 'college') {
-      allMerchants.add(Merchants(name: name, shopType: shopType));
-    }
+  final List<Merchants> allMerchants = [];
+  if (result.elements == null) return allMerchants;
+
+  for (final node in result.elements!) {
+    final name = node.tags?.name ?? 'Unnamed';
+
+    final amenity = node.tags?.amenity;
+    final type = amenity ?? 'Misc';
+
+    String prettify(String s) =>
+        s.replaceAll('_', ' ').replaceFirst(s[0], s[0].toUpperCase());
+
+    allMerchants.add(
+      Merchants(
+        name: name,
+        shopType: prettify(type),
+        lat: node.lat ?? 0,
+        long: node.lon ?? 0,
+      ),
+    );
   }
   return allMerchants;
 }
