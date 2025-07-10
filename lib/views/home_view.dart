@@ -47,9 +47,7 @@ class _MerchantFinderPageState extends State<MerchantFinderPage> {
 
     try {
       // Step 1: Ensure we have a location.
-      if (_pos == null) {
-        _pos = await getCurrentLocation();
-      }
+      _pos ??= await getCurrentLocation();
 
       // Step 2: Fetch merchants with the location.
       final fetchedMerchants = await getAllMerchants(atLocation: _pos!);

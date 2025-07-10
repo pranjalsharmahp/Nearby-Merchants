@@ -36,15 +36,20 @@ Future<List<Merchants>> getAllMerchants({required Position atLocation}) async {
 
     String prettify(String s) =>
         s.replaceAll('_', ' ').replaceFirst(s[0], s[0].toUpperCase());
-
-    allMerchants.add(
-      Merchants(
-        name: name,
-        shopType: prettify(type),
-        lat: node.lat ?? 0,
-        long: node.lon ?? 0,
-      ),
-    );
+    if (type != 'hospital' &&
+        type != 'clinic' &&
+        type != 'police' &&
+        type != 'bus_station' &&
+        type != 'Misc') {
+      allMerchants.add(
+        Merchants(
+          name: name,
+          shopType: prettify(type),
+          lat: node.lat ?? 0,
+          long: node.lon ?? 0,
+        ),
+      );
+    }
   }
   return allMerchants;
 }
