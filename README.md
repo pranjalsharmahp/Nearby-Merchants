@@ -54,13 +54,13 @@ Nearby Merchants is a Flutter-based mobile application developed as a submission
 
 ## Screenshots
 **Initial Screen**
-![InitialScreen](lib/assets/InitialScreen.png)
+<img src="assets/screenshots/home_screen.png" alt="Home Screen" width="350"/>
 
 **List of Merchants Screen**
-![MerchantList](lib/assets/ListofMerchants.png)
+<img src="assets/screenshots/ListofMerchants.png" alt="Home Screen" width="350"/>
 
 **Map View**
-![MapView](lib/assets/MapView.png)
+<img src="assets/screenshots/MapView.png" alt="Home Screen" width="350"/>
 
 ## Author
 **Pranjal Sharma**
