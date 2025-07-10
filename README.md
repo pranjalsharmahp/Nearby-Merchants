@@ -16,10 +16,12 @@ Nearby Merchants is a Flutter-based mobile application developed as a submission
 ## Installation
 1. Clone the repository. 
 
-`git clone https://github.com/pranjalsharmahp/Nearby-Merchants.git`
+`git clone https://github.com/pranjalsharmahp/Nearby-Merchants.git`. 
+
 2. Install dependencies. 
 
-`flutter pub get`
+`flutter pub get`. 
+
 3. Run the app. 
 
 `flutter run`
@@ -56,7 +58,8 @@ Nearby Merchants is a Flutter-based mobile application developed as a submission
 1. Launch the app on your device
 2. Grant location permission
 3. Wait for few seconds while the app fetches and filters the nearby merchants
-4. Explore:
+4. Explore:  
+
     -Scrollable Merchant list. 
 
     -Pins on the map for each merchant. 
